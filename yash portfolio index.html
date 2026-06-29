@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yash Joshi | Biotechnology · Digital Strategy · Bioanalytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ── TOKENS ── */
+:root {
+  --navy:   #0F1E36;
+  --navy2:  #162840;
+  --navy3:  #1E3A56;
+  --teal:   #00A3A6;
+  --teal2:  #00C2C5;
+  --teal-bg: rgba(0,163,166,.08);
+  --amber:  #E07A5F;
+  --slate:  #F5F7FA;
+  --slate2: #EDF0F4;
+  --border: rgba(0,163,166,.18);
+  --border2: rgba(255,255,255,.08);
+  --text-on-dark: #E8EEF6;
+  --text-muted:   rgba(232,238,246,.55);
+  --text-body:    #2B3A52;
+  --text-secondary: #5A6A82;
+  --font: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --transition: 0.22s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--slate);
+  color: var(--text-body);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(15,30,54,.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 2.5rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--teal);
+  text-transform: uppercase;
+  font-family: var(--mono);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  transition: color var(--transition);
+}
+
+.nav-links a:hover { color: var(--teal2); }
+
+.nav-cta {
+  background: var(--teal);
+  color: #fff !important;
+  padding: 6px 16px;
+  border-radius: var(--radius);
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  letter-spacing: .06em !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: #fff !important; }
+
+/* ── HERO ── */
+#hero {
+  background: var(--navy);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 2.5rem 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* grid overlay */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,163,166,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,163,166,.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* corner accent */
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(ellipse at top right, rgba(0,163,166,.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.25rem;
+}
+
+.hero-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--teal);
+}
+
+h1.hero-title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 1rem;
+}
+
+h1.hero-title span { color: var(--teal); }
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.hero-intro {
+  font-size: .92rem;
+  color: rgba(232,238,246,.4);
+  max-width: 540px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  border-left: 2px solid var(--teal);
+  padding-left: 1rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all var(--transition);
+  border: 2px solid var(--teal);
+  letter-spacing: .04em;
+}
+.btn-primary:hover { background: var(--teal2); border-color: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,163,166,.35); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-on-dark);
+  padding: 13px 28px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1.5px solid rgba(232,238,246,.25);
+  transition: all var(--transition);
+  letter-spacing: .04em;
+}
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+.btn-amber {
+  background: var(--amber);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all var(--transition);
+  border: 2px solid var(--amber);
+  letter-spacing: .04em;
+}
+.btn-amber:hover { background: #d4694e; border-color: #d4694e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(224,122,95,.35); }
+
+/* hero avatar */
+.hero-avatar-wrap {
+  position: relative;
+}
+
+.hero-avatar {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--teal);
+  box-shadow: 0 0 0 8px rgba(0,163,166,.12), 0 24px 64px rgba(0,0,0,.4);
+  object-fit: cover;
+  display: block;
+  background: var(--navy3);
+  overflow: hidden;
+}
+
+.avatar-placeholder {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--teal);
+  box-shadow: 0 0 0 8px rgba(0,163,166,.12), 0 24px 64px rgba(0,0,0,.4);
+  background: var(--navy3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.avatar-placeholder-initials {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.avatar-placeholder-label {
+  font-size: 10px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border2);
+}
+
+.stat-item { text-align: left; }
+.stat-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--teal);
+  font-family: var(--mono);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── SECTION SHELL ── */
+section {
+  padding: 90px 2.5rem;
+}
+
+.section-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--teal);
+}
+
+h2.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin-bottom: .5rem;
+}
+
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--teal);
+  border-radius: 2px;
+  margin: 1.2rem 0 2.5rem;
+}
+
+/* ── ABOUT ── */
+#about { background: #fff; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: .97rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+}
+
+.about-text p strong { color: var(--navy); font-weight: 600; }
+
+.about-edu-card {
+  background: var(--slate);
+  border: 1px solid var(--slate2);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+}
+
+.uoft-logo {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  background: #002A5C;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* UofT crest as pure CSS — simplified shield shape */
+.uoft-logo svg {
+  width: 36px;
+  height: 36px;
+}
+
+.edu-info h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.edu-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+.edu-info .edu-year {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--teal);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1.5rem;
+}
+
+.interest-tag {
+  background: var(--teal-bg);
+  color: var(--teal);
+  border: 1px solid rgba(0,163,166,.2);
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+/* targeting panel */
+.target-panel {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  color: var(--text-on-dark);
+}
+
+.target-panel h3 {
+  font-size: 13px;
+  font-family: var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.target-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border2);
+  font-size: 13px;
+}
+.target-row:last-child { border-bottom: none; }
+.target-row .label { color: var(--text-muted); }
+.target-row .value { color: #fff; font-weight: 500; text-align: right; max-width: 60%; }
+.target-row .value.teal { color: var(--teal); }
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--slate); }
+
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.exp-card {
+  background: #fff;
+  border: 1px solid #E4E8EF;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  position: relative;
+  transition: all var(--transition);
+  overflow: hidden;
+}
+
+.exp-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--teal);
+}
+
+.exp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(15,30,54,.12);
+  border-color: rgba(0,163,166,.25);
+}
+
+.exp-org {
+  font-size: 11px;
+  font-family: var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+
+.exp-role {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: .35rem;
+  line-height: 1.3;
+}
+
+.exp-period {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--text-secondary);
+  margin-bottom: 1.1rem;
+  letter-spacing: .06em;
+}
+
+.exp-desc {
+  font-size: .88rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.1rem;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.exp-tag {
+  background: var(--slate);
+  color: var(--text-secondary);
+  border: 1px solid #DDE3EC;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+/* ── PROJECTS ── */
+#projects { background: #fff; }
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+  background: var(--slate);
+  border: 1px solid #DDE3EC;
+  color: var(--text-secondary);
+  padding: 7px 18px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+
+.filter-btn.active { background: var(--teal); border-color: var(--teal); }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--slate);
+  border: 1px solid #E4E8EF;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(15,30,54,.1);
+  border-color: rgba(0,163,166,.3);
+}
+
+.project-header {
+  background: var(--navy);
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(0,163,166,.2);
+  border: 1px solid rgba(0,163,166,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.project-category {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+
+.project-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.project-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.project-kv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.kv-item {}
+.kv-label {
+  font-size: 10px;
+  font-family: var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+.kv-value {
+  font-size: 13px;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.project-desc {
+  font-size: .875rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  flex: 1;
+}
+
+.project-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: .5rem;
+}
+
+.pill {
+  background: var(--teal-bg);
+  color: var(--teal);
+  border: 1px solid rgba(0,163,166,.2);
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  font-family: var(--mono);
+}
+
+/* metric bar */
+.metric-bar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--text-secondary);
+}
+.metric-bar-row span:last-child { font-weight: 600; color: var(--navy); font-family: var(--mono); }
+.metric-bar-bg {
+  background: #E4E8EF;
+  border-radius: 3px;
+  height: 5px;
+  margin-bottom: 10px;
+}
+.metric-bar-fill {
+  height: 5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--teal2));
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--navy); }
+
+#skills h2.section-title { color: #fff; }
+#skills .section-label { color: var(--teal2); }
+#skills .section-divider { background: var(--teal); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.skill-category {
+  background: var(--navy2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+
+.skill-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+
+.skill-cat-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(0,163,166,.15);
+  border: 1px solid rgba(0,163,166,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.skill-cat-name {
+  font-size: 13px;
+  font-family: var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: var(--text-on-dark);
+  padding: 5px 13px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  transition: all var(--transition);
+}
+
+.skill-tag:hover {
+  background: rgba(0,163,166,.15);
+  border-color: rgba(0,163,166,.35);
+  color: var(--teal2);
+}
+
+.skill-tag.highlight {
+  background: rgba(0,163,166,.12);
+  border-color: rgba(0,163,166,.3);
+  color: var(--teal2);
+}
+
+/* ── CONTACT / FOOTER ── */
+#contact { background: var(--slate); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-text p {
+  font-size: .97rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid #E4E8EF;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  color: var(--text-body);
+}
+
+.contact-link-item:hover {
+  border-color: var(--teal);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0,163,166,.1);
+}
+
+.contact-link-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.icon-linkedin { background: #EBF3FC; }
+.icon-email { background: #FEF3EE; }
+.icon-resume { background: #E8F8F8; }
+
+.contact-link-info h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 1px;
+}
+.contact-link-info p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* contact form */
+.contact-form {
+  background: #fff;
+  border: 1px solid #E4E8EF;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.contact-form h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--slate);
+  border: 1px solid #DDE3EC;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--navy);
+  transition: border-color var(--transition);
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--teal);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0,163,166,.1);
+}
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-submit {
+  width: 100%;
+  background: var(--amber);
+  color: #fff;
+  border: none;
+  padding: 13px;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 6px;
+}
+.form-submit:hover {
+  background: #d4694e;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224,122,95,.35);
+}
+
+/* ── FOOTER BAR ── */
+footer {
+  background: var(--navy);
+  padding: 1.75rem 2.5rem;
+  border-top: 1px solid var(--border2);
+}
+
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-copy strong { color: var(--teal); font-weight: 600; }
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--teal2); }
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: .08s; }
+.stagger-2 { transition-delay: .16s; }
+.stagger-3 { transition-delay: .24s; }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 1.25rem; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 1.25rem 60px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-avatar-wrap { display: none; }
+  section { padding: 60px 1.25rem; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-brand">YJ · Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Case Studies</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">Available for opportunities · Toronto, ON</div>
+      <h1 class="hero-title">Yash Joshi<br /><span>Biotechnology · Digital Strategy</span><br />& Bioanalytics</h1>
+      <p class="hero-sub">Biotechnology graduate and Bioanalytical Chemist bridging the gap between life sciences, data integration, and digital strategy.</p>
+      <p class="hero-intro">Leveraging experience in systems biology, digital-health platforms, regulated laboratory operations, and digital analytics to drive healthcare innovation.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Case Studies</a>
+        <a href="#contact" class="btn-amber">Download Tailored Resume</a>
+        <a href="#about" class="btn-outline">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Core Domains</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">UofT</div>
+          <div class="stat-label">HBSc Biotechnology</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">GLP</div>
+          <div class="stat-label">GMP Certified</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-avatar-wrap">
+      <div class="avatar-placeholder" title="Replace with your LinkedIn photo">
+        <div class="avatar-placeholder-initials">YJ</div>
+        <div class="avatar-placeholder-label">Add LinkedIn photo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>I'm a <strong>Biotechnology Specialist</strong> from the University of Toronto with interdisciplinary training spanning analytical chemistry, systems biology, bioinformatics, and scientific communication. My work sits at a rare intersection — I can operate in a regulated laboratory environment and translate data outputs into actionable digital strategy.</p>
+        <p>What distinguishes my profile is breadth with depth: from designing and executing <strong>HPLC/LC-MS validation studies</strong> at Cliantha Research, to architecting health-data integration workflows at Astreca, to running <strong>multi-channel performance campaigns</strong> as a Digital Advertising Consultant — I understand the full pipeline from data generation to strategic decision-making.</p>
+        <p>My focus now is organizations like <strong>Sanofi</strong> where digital strategy, healthcare data, and innovation converge — where a scientific mindset sharpens analytical rigour, and where I can contribute to meaningful health outcomes at scale.</p>
+
+        <div class="about-edu-card">
+          <div class="uoft-logo">
+            <!-- UofT simplified crest -->
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 3 L30 8 L30 22 C30 28 24 33 18 35 C12 33 6 28 6 22 L6 8 Z" fill="#002A5C" stroke="#00A3A6" stroke-width="1.5"/>
+              <text x="18" y="24" text-anchor="middle" fill="white" font-size="12" font-family="serif" font-weight="bold">U</text>
+              <path d="M10 14 L26 14" stroke="#00A3A6" stroke-width="1" opacity=".6"/>
+            </svg>
+          </div>
+          <div class="edu-info">
+            <h4>University of Toronto</h4>
+            <p>Honours Bachelor of Science — Biotechnology Specialist</p>
+            <p>Systems Biology · Bioinformatics · Analytical Chemistry · Research Design</p>
+            <div class="edu-year">HBSc · Toronto, Ontario, Canada</div>
+          </div>
+        </div>
+
+        <div class="interests-list" style="margin-top:1.5rem;">
+          <span class="interest-tag">Life Sciences</span>
+          <span class="interest-tag">AI Implementation</span>
+          <span class="interest-tag">Digital Health Platforms</span>
+          <span class="interest-tag">Product Strategy</span>
+          <span class="interest-tag">Vaccine Manufacturing</span>
+          <span class="interest-tag">Data Integration</span>
+          <span class="interest-tag">Healthcare Innovation</span>
+        </div>
+      </div>
+
+      <div class="fade-up stagger-1">
+        <div class="target-panel">
+          <h3>Target Role Profile</h3>
+          <div class="target-row">
+            <span class="label">Target Organization</span>
+            <span class="value teal">Sanofi</span>
+          </div>
+          <div class="target-row">
+            <span class="label">Role</span>
+            <span class="value">Digital Strategy Analyst</span>
+          </div>
+          <div class="target-row">
+            <span class="label">Industry</span>
+            <span class="value">Pharmaceutical / Digital Health</span>
+          </div>
+          <div class="target-row">
+            <span class="label">Key Competency Alignment</span>
+            <span class="value">Bioanalytics · Data Strategy · GxP</span>
+          </div>
+          <div class="target-row">
+            <span class="label">Location</span>
+            <span class="value">Toronto, ON (Open to hybrid)</span>
+          </div>
+          <div class="target-row">
+            <span class="label">Authorization</span>
+            <span class="value">Canadian Citizen / PR</span>
+          </div>
+        </div>
+
+        <div style="margin-top:1.25rem; background:#fff; border:1px solid #E4E8EF; border-radius:var(--radius-lg); padding:1.5rem;">
+          <h3 style="font-size:13px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem;">Core Competency Radar</h3>
+          <div id="radar-chart" style="height:180px; display:flex; align-items:center; justify-content:center;">
+            <canvas id="radarCanvas" width="260" height="180"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-divider"></div>
+    <div class="exp-grid">
+
+      <div class="exp-card fade-up">
+        <div class="exp-org">Cliantha Research</div>
+        <div class="exp-role">Bioanalytical Chemist</div>
+        <div class="exp-period">CRO · Regulated Laboratory Environment</div>
+        <div class="exp-desc">Executed IVRT/IVPT membrane-diffusion studies and HPLC analytical runs under strict GLP/GMP compliance frameworks. Maintained rigorous documentation chains, authored and reviewed SOPs, and supported method validation pipelines for dermal drug products in a regulated CRO environment.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">HPLC</span>
+          <span class="exp-tag">IVRT / IVPT</span>
+          <span class="exp-tag">GLP / GMP</span>
+          <span class="exp-tag">SOP Authoring</span>
+          <span class="exp-tag">LC-MS/MS</span>
+          <span class="exp-tag">Method Validation</span>
+          <span class="exp-tag">Documentation</span>
+        </div>
+      </div>
+
+      <div class="exp-card fade-up stagger-1">
+        <div class="exp-org">Astreca</div>
+        <div class="exp-role">Systems Biologist</div>
+        <div class="exp-period">Digital Health Startup · Cross-functional Role</div>
+        <div class="exp-desc">Contributed to HealthFlux and AstrecaMed platforms, integrating biological datasets and building interactive data visualizations for clinical stakeholders. Collaborated with software engineering teams to translate biological logic into scalable digital architecture, and authored reporting frameworks for cross-functional alignment.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">HealthFlux</span>
+          <span class="exp-tag">AstrecaMed</span>
+          <span class="exp-tag">Data Integration</span>
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">Visualizations</span>
+          <span class="exp-tag">Cross-functional</span>
+          <span class="exp-tag">Reporting</span>
+        </div>
+      </div>
+
+      <div class="exp-card fade-up stagger-2">
+        <div class="exp-org">Independent</div>
+        <div class="exp-role">Digital Advertising Consultant</div>
+        <div class="exp-period">Multi-channel Performance Marketing</div>
+        <div class="exp-desc">Designed and executed data-driven digital advertising strategies across Google Ads, Meta, and LinkedIn platforms. Deployed A/B testing frameworks to optimize conversion funnels, built attribution models for campaign reporting, and implemented advanced conversion tracking to deliver measurable ROI for clients.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Google Ads</span>
+          <span class="exp-tag">Meta Ads</span>
+          <span class="exp-tag">LinkedIn Ads</span>
+          <span class="exp-tag">A/B Testing</span>
+          <span class="exp-tag">Attribution</span>
+          <span class="exp-tag">CRM</span>
+          <span class="exp-tag">Analytics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Case Studies</h2>
+    <div class="section-divider"></div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="digital-health">Digital Health</button>
+      <button class="filter-btn" data-filter="bioanalytical">Bioanalytical</button>
+      <button class="filter-btn" data-filter="analytics">Analytics</button>
+      <button class="filter-btn" data-filter="data">Data & Python</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Card 1 -->
+      <div class="project-card fade-up" data-category="digital-health">
+        <div class="project-header">
+          <div>
+            <div class="project-category">Digital Health · Systems Biology</div>
+            <div class="project-name">HealthFlux Biological Data Integration Architecture</div>
+          </div>
+          <div class="project-icon">🧬</div>
+        </div>
+        <div class="project-body">
+          <div class="project-kv">
+            <div class="kv-item">
+              <div class="kv-label">Challenge</div>
+              <div class="kv-value">Fragmented biological data streams</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Platform</div>
+              <div class="kv-value">HealthFlux / AstrecaMed</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Role</div>
+              <div class="kv-value">Systems Biologist</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Impact</div>
+              <div class="kv-value">Clinical data unification</div>
+            </div>
+          </div>
+          <p class="project-desc">Architected a biological data integration layer for the HealthFlux platform, unifying multi-source clinical and biological datasets into a coherent reporting framework. Developed interactive visualizations for clinician-facing dashboards and collaborated with software teams to define data schemas and API contracts.</p>
+          <div style="margin-top:.5rem;">
+            <div class="metric-bar-row"><span>Data Source Integration</span><span>87%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:87%"></div></div>
+            <div class="metric-bar-row"><span>Dashboard Adoption</span><span>92%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:92%"></div></div>
+          </div>
+          <div class="project-pills">
+            <span class="pill">Python</span>
+            <span class="pill">REST APIs</span>
+            <span class="pill">Systems Biology</span>
+            <span class="pill">D3.js</span>
+            <span class="pill">Data Pipelines</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="project-card fade-up stagger-1" data-category="bioanalytical">
+        <div class="project-header">
+          <div>
+            <div class="project-category">Bioanalytical · GxP</div>
+            <div class="project-name">Method Development & Validation Pipeline — Dermal Drug Products</div>
+          </div>
+          <div class="project-icon">⚗️</div>
+        </div>
+        <div class="project-body">
+          <div class="project-kv">
+            <div class="kv-item">
+              <div class="kv-label">Setting</div>
+              <div class="kv-value">Regulated CRO Lab</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Methods</div>
+              <div class="kv-value">HPLC · IVRT · IVPT</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Compliance</div>
+              <div class="kv-value">GLP · GMP · FDA Aligned</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Outcome</div>
+              <div class="kv-value">Validated submission package</div>
+            </div>
+          </div>
+          <p class="project-desc">Designed and executed a bioanalytical method validation workflow for a topical drug product in a GLP/GMP environment. Developed SOPs, managed instrument qualification records, and authored validation reports aligned with ICH Q2(R1) guidelines. Specific compound details are maintained under NDA/confidentiality agreements.</p>
+          <div style="margin-top:.5rem;">
+            <div class="metric-bar-row"><span>Method Accuracy (% Recovery)</span><span>>98%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:98%"></div></div>
+            <div class="metric-bar-row"><span>Documentation Audit Score</span><span>100%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="project-pills">
+            <span class="pill">HPLC</span>
+            <span class="pill">LC-MS/MS</span>
+            <span class="pill">ICH Q2(R1)</span>
+            <span class="pill">CAPA</span>
+            <span class="pill">SOP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="project-card fade-up" data-category="analytics">
+        <div class="project-header">
+          <div>
+            <div class="project-category">Digital Analytics · Campaign Strategy</div>
+            <div class="project-name">Multi-Channel Campaign Performance & Attribution Model</div>
+          </div>
+          <div class="project-icon">📊</div>
+        </div>
+        <div class="project-body">
+          <div class="project-kv">
+            <div class="kv-item">
+              <div class="kv-label">Channels</div>
+              <div class="kv-value">Google · Meta · LinkedIn</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Model</div>
+              <div class="kv-value">Data-driven attribution</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Testing</div>
+              <div class="kv-value">A/B · Multivariate</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Reporting</div>
+              <div class="kv-value">GA4 · Looker Studio</div>
+            </div>
+          </div>
+          <p class="project-desc">Built a unified attribution framework across three paid platforms to identify true conversion drivers. Deployed structured A/B testing across ad creative and audience segments. Performance metrics anonymized per client NDA; strategy, methodology, and architecture are fully reproducible.</p>
+          <div style="margin-top:.5rem;">
+            <div class="metric-bar-row"><span>CPA Reduction vs. baseline</span><span>34%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:68%"></div></div>
+            <div class="metric-bar-row"><span>ROAS Improvement</span><span>2.8×</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:80%"></div></div>
+          </div>
+          <div class="project-pills">
+            <span class="pill">GA4</span>
+            <span class="pill">Looker Studio</span>
+            <span class="pill">GTM</span>
+            <span class="pill">Meta Pixel</span>
+            <span class="pill">Excel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="project-card fade-up stagger-1" data-category="data">
+        <div class="project-header">
+          <div>
+            <div class="project-category">Python · Data Visualization</div>
+            <div class="project-name">Biotech Drug-Development Analytics Dashboard</div>
+          </div>
+          <div class="project-icon">🐍</div>
+        </div>
+        <div class="project-body">
+          <div class="project-kv">
+            <div class="kv-item">
+              <div class="kv-label">Stack</div>
+              <div class="kv-value">Python · Pandas · Plotly</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Dataset</div>
+              <div class="kv-value">Drug pipeline / trial data</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Output</div>
+              <div class="kv-value">Interactive Dash App</div>
+            </div>
+            <div class="kv-item">
+              <div class="kv-label">Focus</div>
+              <div class="kv-value">Healthcare trend analysis</div>
+            </div>
+          </div>
+          <p class="project-desc">Designed and developed an interactive Python-based dashboard to analyze publicly available drug-development datasets and visualize healthcare market trends. Features phase-progression tracking, therapeutic area breakdowns, and approval timeline analytics — built to simulate the kind of BI tooling used in pharma strategy teams.</p>
+          <div style="margin-top:.5rem;">
+            <div class="metric-bar-row"><span>Datasets Integrated</span><span>6 sources</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:75%"></div></div>
+            <div class="metric-bar-row"><span>Interactive Chart Types</span><span>9 views</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width:90%"></div></div>
+          </div>
+          <div class="project-pills">
+            <span class="pill">Python</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">Plotly Dash</span>
+            <span class="pill">NumPy</span>
+            <span class="pill">Matplotlib</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">Competencies</div>
+    <h2 class="section-title">Skills Grid</h2>
+    <div class="section-divider"></div>
+
+    <div class="skills-grid">
+
+      <div class="skill-category fade-up">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">🔬</div>
+          <div class="skill-cat-name">Laboratory & Biotech</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Biotechnology</span>
+          <span class="skill-tag highlight">Systems Biology</span>
+          <span class="skill-tag">HPLC</span>
+          <span class="skill-tag">LC-MS/MS</span>
+          <span class="skill-tag">IVRT / IVPT</span>
+          <span class="skill-tag">Method Validation</span>
+          <span class="skill-tag">Bioinformatics</span>
+          <span class="skill-tag">Molecular Biology</span>
+          <span class="skill-tag">Analytical Chemistry</span>
+          <span class="skill-tag">Experimental Design</span>
+        </div>
+      </div>
+
+      <div class="skill-category fade-up stagger-1">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">📈</div>
+          <div class="skill-cat-name">Data & Analytics</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Python</span>
+          <span class="skill-tag highlight">Advanced Excel</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">Pandas / NumPy</span>
+          <span class="skill-tag">Plotly / Dash</span>
+          <span class="skill-tag">Market Research Synthesis</span>
+          <span class="skill-tag">Statistical Analysis</span>
+          <span class="skill-tag">Looker Studio</span>
+          <span class="skill-tag">GA4</span>
+          <span class="skill-tag">ETL Pipelines</span>
+        </div>
+      </div>
+
+      <div class="skill-category fade-up stagger-2">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">📡</div>
+          <div class="skill-cat-name">Digital Strategy & Marketing</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Digital Marketing</span>
+          <span class="skill-tag highlight">Google Ads</span>
+          <span class="skill-tag">Meta Ads</span>
+          <span class="skill-tag">LinkedIn Ads</span>
+          <span class="skill-tag">CRM Management</span>
+          <span class="skill-tag">Analytics Pipelines</span>
+          <span class="skill-tag">A/B Testing</span>
+          <span class="skill-tag">Conversion Tracking</span>
+          <span class="skill-tag">Campaign Reporting</span>
+          <span class="skill-tag">Content Strategy</span>
+        </div>
+      </div>
+
+      <div class="skill-category fade-up stagger-3">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">⚙️</div>
+          <div class="skill-cat-name">Compliance & AI Tools</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">GMP / GLP</span>
+          <span class="skill-tag highlight">SOPs & CAPA</span>
+          <span class="skill-tag">Documentation Management</span>
+          <span class="skill-tag">ICH Guidelines</span>
+          <span class="skill-tag">Audit Readiness</span>
+          <span class="skill-tag">ChatGPT / Copilot</span>
+          <span class="skill-tag">AI Workflow Prototyping</span>
+          <span class="skill-tag">Regulatory Affairs</span>
+          <span class="skill-tag">Scientific Communication</span>
+          <span class="skill-tag">Technical Report Writing</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-divider"></div>
+    <div class="contact-grid">
+
+      <div class="fade-up">
+        <p>I'm actively exploring opportunities at the intersection of life sciences, digital health, and strategy — particularly within pharmaceutical and healthcare organizations where analytical rigour and digital fluency both matter.</p>
+        <p>Whether you're a recruiter at Sanofi, a hiring manager in a digital health team, or a collaborator in the biotech space — I'd love to connect.</p>
+
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/yash-joshi" class="contact-link-item" target="_blank" rel="noopener">
+            <div class="contact-link-icon icon-linkedin">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077B5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2" fill="#0077B5"/></svg>
+            </div>
+            <div class="contact-link-info">
+              <h4>LinkedIn Profile</h4>
+              <p>linkedin.com/in/yash-joshi</p>
+            </div>
+          </a>
+
+          <a href="mailto:yash.joshi@email.com" class="contact-link-item">
+            <div class="contact-link-icon icon-email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7L12 13 2 7"/></svg>
+            </div>
+            <div class="contact-link-info">
+              <h4>Email</h4>
+              <p>yash.joshi@email.com</p>
+            </div>
+          </a>
+
+          <a href="#" class="contact-link-item" onclick="alert('Replace this with your actual resume PDF link'); return false;">
+            <div class="contact-link-icon icon-resume">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A3A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            </div>
+            <div class="contact-link-info">
+              <h4>Download Resume</h4>
+              <p>Sanofi-tailored · PDF · Updated 2025</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up stagger-1">
+        <h3>Send a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Sarah" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Chen" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Organization</label>
+          <input type="text" placeholder="Sanofi, Toronto" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="sarah.chen@sanofi.com" />
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option>Recruitment Inquiry</option>
+            <option>Project Collaboration</option>
+            <option>Research Partnership</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="I came across your portfolio and I'd love to discuss an opportunity on our Digital Strategy team..."></textarea>
+        </div>
+        <button class="form-submit" onclick="alert('Contact form — connect to your preferred service (Formspree, EmailJS, etc.) to activate.')">Send Message →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2025 <strong>Yash Joshi</strong> · HBSc Biotechnology, University of Toronto · Toronto, ON</div>
+    <div class="footer-links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Case Studies</a>
+      <a href="https://linkedin.com/in/yash-joshi" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── SCROLL ANIMATIONS ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ── PROJECT FILTER ── */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card => {
+      const cat = card.dataset.category;
+      const show = filter === 'all' || cat === filter;
+      card.style.display = show ? 'flex' : 'none';
+    });
+  });
+});
+
+/* ── RADAR CHART (canvas) ── */
+window.addEventListener('load', () => {
+  const canvas = document.getElementById('radarCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2 + 10;
+  const R = 70;
+
+  const axes = [
+    { label: 'Lab Science', val: 0.88 },
+    { label: 'Data Analytics', val: 0.82 },
+    { label: 'Digital Strategy', val: 0.79 },
+    { label: 'GxP Compliance', val: 0.91 },
+    { label: 'Bioinformatics', val: 0.75 },
+    { label: 'Communication', val: 0.87 }
+  ];
+
+  const n = axes.length;
+  const angleStep = (2 * Math.PI) / n;
+  const startAngle = -Math.PI / 2;
+
+  function polarToXY(i, r) {
+    const a = startAngle + i * angleStep;
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  }
+
+  /* grid rings */
+  ctx.strokeStyle = 'rgba(0,163,166,0.15)';
+  ctx.lineWidth = 1;
+  [0.25, 0.5, 0.75, 1].forEach(pct => {
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const p = polarToXY(i, R * pct);
+      i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  });
+
+  /* axis lines */
+  axes.forEach((_, i) => {
+    const p = polarToXY(i, R);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = 'rgba(0,163,166,0.12)';
+    ctx.stroke();
+  });
+
+  /* data polygon */
+  ctx.beginPath();
+  axes.forEach((ax, i) => {
+    const p = polarToXY(i, R * ax.val);
+    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(0,163,166,0.18)';
+  ctx.fill();
+  ctx.strokeStyle = '#00A3A6';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  /* dots */
+  axes.forEach((ax, i) => {
+    const p = polarToXY(i, R * ax.val);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 3.5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#00C2C5';
+    ctx.fill();
+  });
+
+  /* labels */
+  ctx.font = '10px Inter, sans-serif';
+  ctx.fillStyle = '#5A6A82';
+  ctx.textAlign = 'center';
+  axes.forEach((ax, i) => {
+    const p = polarToXY(i, R + 20);
+    ctx.fillText(ax.label, p.x, p.y + 3);
+  });
+});
+
+/* ── METRIC BAR ANIMATION on scroll ── */
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.metric-bar-fill').forEach(bar => {
+        const target = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => { bar.style.width = target; }, 200);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.project-card').forEach(card => barObserver.observe(card));
+
+/* ── ACTIVE NAV ON SCROLL ── */
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.pageYOffset + 80;
+  sections.forEach(sec => {
+    if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+      if (link) link.style.color = '#00C2C5';
+    } else {
+      const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+      if (link) link.style.color = '';
+    }
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
